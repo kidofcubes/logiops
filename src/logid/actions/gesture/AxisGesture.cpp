@@ -102,10 +102,10 @@ void AxisGesture::move(int16_t axis) {
             _axis_remainder -= int_remainder;
         }
 
-        if (negative_multiplier)
-            move_floor = -move_floor;
-
         if (low_res_axis != -1) {
+            if (negative_multiplier)
+                move_floor = -move_floor;
+
             int lowres_movement, hires_movement = (int) move_floor;
             _device->virtualInput()->moveAxis(_input_axis.value(), hires_movement);
             hires_remainder += hires_movement;
